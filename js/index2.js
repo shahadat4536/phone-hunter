@@ -39,7 +39,7 @@ const displayPhone = (phones) => {
             div.classList.add('col')
             div.innerHTML = `
             <div class="card h-100">
-                    <img src="${phone.image}" class="card-img-top mx-auto w-75 py-5" alt="...">
+                    <img src="${phone.image}" class="card-img-top mx-auto w-75" alt="...">
                     <div class="card-body">
                         <h3 class="card-title"> ${phone.phone_name}</h3>
                         <p>Brand: ${phone.brand}</p>
@@ -47,6 +47,7 @@ const displayPhone = (phones) => {
                     <button onclick="phoneFullDetails('${phone.slug}')"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Details
                     </button>
+                    
             </div>`
             phonePreDetails.appendChild(div);
         };
@@ -72,25 +73,24 @@ const displayPhoneFullDetails = (info) => {
     div.classList.add('card')
     div.innerHTML = `
     <div class="row g-0">
-            <div class="col-md-4 mx-auto">
-                <img src="${info.image}" class="img-fluid rounded-start " alt="...">
+            <div class="col-md-4">
+                <img src="${info.image}" class="img-fluid rounded-start my-auto" alt="...">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title">${info.name}</h3>
                     <p class="card-text"><small class="text-muted">${info.releaseDate ? info.releaseDate : `no found release date`}</small></p>
-                    <p class="card-text"><span class="fw-bold">ChipSet: </span> ${info.mainFeatures.chipSet}</p>
-                    <p class="card-text"> <span class="fw-bold">Display Size:</span> ${info.mainFeatures.displaySize}</p>
-                    <p class="card-text"> <span class="fw-bold">Memory: </span> ${info.mainFeatures.memory}</p>
-                    <p class="card-text"><span class="fw-bold">Storage: </span> ${info.mainFeatures.storage}</p>
-                    <p class="card-text"><span class="fw-bold">Sensors: </span> ${info.mainFeatures.sensors}</p>
-                    <p class="card-text"><span class="fw-bold">Other Feature</span></p>
-                    <p class="card-text"><span class="fw-bold">Bluetooth: </span> ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth`}</p>
-                    <p class="card-text"> <span class="fw-bold">GPS: </span> ${info?.others?.GPS ? info.others.GPS : `No GPS Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">NFC: </span> ${info?.others?.NFC ? info.others.NFC : `No NFC Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">Radio: </span> ${info?.others?.Radio ? info.others.Radio : `No Radio Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">USB: </span> ${info?.others?.USB ? info.others.USB : `No USB Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">WLAN: </span> ${info?.others?.WLAN ? info.others.WLAN : `No WLAN Data Found`}</p>
+                    <p class="card-text">ChipSet: ${info.mainFeatures.chipSet}</p>
+                    <p class="card-text">Display Size: ${info.mainFeatures.displaySize}</p>
+                    <p class="card-text">Memory: ${info.mainFeatures.memory}</p>
+                    <p class="card-text">Storage: ${info.mainFeatures.storage}</p>
+                    <p class="card-text">Sensors: ${info.mainFeatures.sensors}</p>
+                    <p class="card-text">Bluetooth: ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth`}</p>
+                    <p class="card-text">GPS: ${info?.others?.GPS ? info.others.GPS : `No GPS Data Found`}</p>
+                    <p class="card-text">NFC: ${info?.others?.NFC ? info.others.NFC : `No NFC Data Found`}</p>
+                    <p class="card-text">Radio: ${info?.others?.Radio ? info.others.Radio : `No Radio Data Found`}</p>
+                    <p class="card-text">USB: ${info?.others?.USB ? info.others.USB : `No USB Data Found`}</p>
+                    <p class="card-text">WLAN: ${info?.others?.WLAN ? info.others.WLAN : `No WLAN Data Found`}</p>
                 </div>
             </div>
         </div>`
