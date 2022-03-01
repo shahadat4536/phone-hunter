@@ -16,11 +16,13 @@ const searchPhone = () => {
     if (isNaN(inputValue.value) == false) {
         error.innerText = "Please enter text"
         phoneFullDetailsCard.textContent = '';
+        inputValue.value = '';
 
     } else {
         phonePreDetails.textContent = '';
         error.innerText = '';
         phoneFullDetailsCard.textContent = '';
+        inputValue.value = '';
         fetch(url)
             .then(res => res.json())
             .then(data => displayPhone(data.data.slice(0, 20)))
@@ -104,6 +106,7 @@ const displayPhoneFullDetails = (info) => {
                 <div class="card-body">
                     <h3 class="card-title">${info.name}</h3>
                     <p class="card-text"><small class="text-muted">${info.releaseDate ? info.releaseDate : `NO Release Date Found `}</small></p>
+                    <p class="card-text"><span class="fw-bold">Main Features </span></p>
                     <p class="card-text"><span class="fw-bold">ChipSet: </span> ${info.mainFeatures.chipSet}</p>
                     <p class="card-text"> <span class="fw-bold">Display Size:</span> ${info.mainFeatures.displaySize}</p>
                     <p class="card-text"> <span class="fw-bold">Memory: </span> ${info.mainFeatures.memory}</p>
