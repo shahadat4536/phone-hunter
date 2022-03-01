@@ -1,6 +1,10 @@
 const error = document.getElementById('error');
 let errorMessage = error.innerText;
 const spinner = document.getElementById('spinner')
+const phonePreDetails = document.getElementById('phone-pre-details')
+const phoneFullDetailsCard = document.getElementById('phone-full-details-card')
+
+/* search box and button start */
 const searchPhone = () => {
     // console.log('jjjjj')
 
@@ -23,7 +27,13 @@ const searchPhone = () => {
         document.getElementById('spinner').style.display = 'block'
     }
 }
-const phonePreDetails = document.getElementById('phone-pre-details')
+/* search box and button end */
+
+
+
+
+
+/* display all phone show with card start */
 const displayPhone = (phones) => {
     console.log('ggg', phones)
 
@@ -56,7 +66,13 @@ const displayPhone = (phones) => {
     }
 
 };
+/* display all phone show with card end */
 
+
+
+
+
+/* phone full Details button start */
 const phoneFullDetails = (id) => {
     // console.log(id)
 
@@ -66,8 +82,14 @@ const phoneFullDetails = (id) => {
         .then(res => res.json())
         .then(data => displayPhoneFullDetails(data.data))
 }
+/* phone full Details button end */
 
-const phoneFullDetailsCard = document.getElementById('phone-full-details-card')
+
+
+
+
+
+
 const displayPhoneFullDetails = (info) => {
     phoneFullDetailsCard.innerHTML = '';
     console.log(info)
@@ -88,12 +110,12 @@ const displayPhoneFullDetails = (info) => {
                     <p class="card-text"><span class="fw-bold">Storage: </span> ${info.mainFeatures.storage}</p>
                     <p class="card-text"><span class="fw-bold">Sensors: </span> ${info.mainFeatures.sensors}</p>
                     <p class="card-text"><span class="fw-bold">Other Feature</span></p>
-                    <p class="card-text"><span class="fw-bold">Bluetooth: </span> ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth Data Found`}</p>
-                    <p class="card-text"> <span class="fw-bold">GPS: </span> ${info?.others?.GPS ? info.others.GPS : `No GPS Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">NFC: </span> ${info?.others?.NFC ? info.others.NFC : `No NFC Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">Radio: </span> ${info?.others?.Radio ? info.others.Radio : `No Radio Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">USB: </span> ${info?.others?.USB ? info.others.USB : `No USB Data Found`}</p>
-                    <p class="card-text"><span class="fw-bold">WLAN: </span> ${info?.others?.WLAN ? info.others.WLAN : `No WLAN Data Found`}</p>
+                    <p class="card-text"><span class="fw-bolder">Bluetooth: </span> ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth Data Found`}</p>
+                    <p class="card-text"> <span class="fw-bolder">GPS: </span> ${info?.others?.GPS ? info.others.GPS : `No GPS Data Found`}</p>
+                    <p class="card-text"><span class="fw-bolder">NFC: </span> ${info?.others?.NFC ? info.others.NFC : `No NFC Data Found`}</p>
+                    <p class="card-text"><span class="fw-bolder">Radio: </span> ${info?.others?.Radio ? info.others.Radio : `No Radio Data Found`}</p>
+                    <p class="card-text"><span class="fw-bolder">USB: </span> ${info?.others?.USB ? info.others.USB : `No USB Data Found`}</p>
+                    <p class="card-text"><span class="fw-bolder">WLAN: </span> ${info?.others?.WLAN ? info.others.WLAN : `No WLAN Data Found`}</p>
                 </div>
             </div>
         </div>`
