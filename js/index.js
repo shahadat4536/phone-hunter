@@ -1,6 +1,6 @@
 const error = document.getElementById('error');
 let errorMessage = error.innerText;
-
+const spinner = document.getElementById('spinner')
 const searchPhone = () => {
     // console.log('jjjjj')
 
@@ -20,6 +20,7 @@ const searchPhone = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => displayPhone(data.data.slice(0, 20)))
+        document.getElementById('spinner').style.display = 'block'
     }
 }
 const phonePreDetails = document.getElementById('phone-pre-details')
@@ -28,11 +29,13 @@ const displayPhone = (phones) => {
 
 
     if (phones.length == 0) {
-        error.innerText = "Please enter text0000000000"
+        document.getElementById('spinner').style.display = 'none'
+        error.innerText = "No Phone Found"
         phonePreDetails.innerHTML = '';
 
         // alert('55555555555555')
     } else {
+        document.getElementById('spinner').style.display = 'none'
         for (const phone of phones) {
             // console.log(phone)
             const div = document.createElement('div')
@@ -85,7 +88,7 @@ const displayPhoneFullDetails = (info) => {
                     <p class="card-text"><span class="fw-bold">Storage: </span> ${info.mainFeatures.storage}</p>
                     <p class="card-text"><span class="fw-bold">Sensors: </span> ${info.mainFeatures.sensors}</p>
                     <p class="card-text"><span class="fw-bold">Other Feature</span></p>
-                    <p class="card-text"><span class="fw-bold">Bluetooth: </span> ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth`}</p>
+                    <p class="card-text"><span class="fw-bold">Bluetooth: </span> ${info?.others?.Bluetooth ? info.others.Bluetooth : `No Bluetooth Data Found`}</p>
                     <p class="card-text"> <span class="fw-bold">GPS: </span> ${info?.others?.GPS ? info.others.GPS : `No GPS Data Found`}</p>
                     <p class="card-text"><span class="fw-bold">NFC: </span> ${info?.others?.NFC ? info.others.NFC : `No NFC Data Found`}</p>
                     <p class="card-text"><span class="fw-bold">Radio: </span> ${info?.others?.Radio ? info.others.Radio : `No Radio Data Found`}</p>
