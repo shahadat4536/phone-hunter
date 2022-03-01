@@ -3,6 +3,48 @@ let errorMessage = error.innerText;
 const spinner = document.getElementById('spinner')
 const phonePreDetails = document.getElementById('phone-pre-details')
 const phoneFullDetailsCard = document.getElementById('phone-full-details-card')
+const showAll = document.getElementById('show-all')
+
+
+
+
+const showAllPhone = () => {
+    const inputValue = document.getElementById('input-value');
+    const inputValueText = inputValue.value;
+    const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue.value}`
+    console.log(url)
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayAllPhone(data.data))
+}
+
+const displayAllPhone = (phones) => {
+
+    for (const phone of phones) {
+        // console.log(phone)
+        const div = document.createElement('div')
+        div.classList.add('col')
+        div.innerHTML = `
+        <div class="card h-100">
+                <img src="${phone.image}" class="card-img-top mx-auto w-75 py-5" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title"> ${phone.phone_name}</h3>
+                    <p>Brand: ${phone.brand}</p>
+                </div> 
+                <button onclick="phoneFullDetails('${phone.slug}')"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Details
+                </button>
+        </div>`
+        phonePreDetails.appendChild(div);
+    };
+}
+
+
+
+
+
+
+
 
 /* search box and button start */
 const searchPhone = () => {
@@ -15,12 +57,12 @@ const searchPhone = () => {
     console.log(url)
     if (isNaN(inputValue.value) == false) {
         error.innerText = "Please enter text"
-        phoneFullDetailsCard.innerHTML = '';
+        phoneFullDetailsCard.textContent = '';
 
     } else {
-        phonePreDetails.innerHTML = '';
+        phonePreDetails.textContent = '';
         error.innerText = '';
-        phoneFullDetailsCard.innerHTML = '';
+        phoneFullDetailsCard.textContent = '';
         fetch(url)
             .then(res => res.json())
             .then(data => displayPhone(data.data.slice(0, 20)))
@@ -41,7 +83,7 @@ const displayPhone = (phones) => {
     if (phones.length == 0) {
         document.getElementById('spinner').style.display = 'none'
         error.innerText = "No Phone Found"
-        phonePreDetails.innerHTML = '';
+        phonePreDetails.textContent = '';
 
         // alert('55555555555555')
     } else {
@@ -87,11 +129,11 @@ const phoneFullDetails = (id) => {
 
 
 
-
+/* Display Phone Full Details Card Start */
 
 
 const displayPhoneFullDetails = (info) => {
-    phoneFullDetailsCard.innerHTML = '';
+    phoneFullDetailsCard.textContent = '';
     console.log(info)
     const div = document.createElement('div')
     div.classList.add('card')
@@ -103,7 +145,7 @@ const displayPhoneFullDetails = (info) => {
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title">${info.name}</h3>
-                    <p class="card-text"><small class="text-muted">${info.releaseDate ? info.releaseDate : `no found release date`}</small></p>
+                    <p class="card-text"><small class="text-muted">${info.releaseDate ? info.releaseDate : `NO Release Date Found `}</small></p>
                     <p class="card-text"><span class="fw-bold">ChipSet: </span> ${info.mainFeatures.chipSet}</p>
                     <p class="card-text"> <span class="fw-bold">Display Size:</span> ${info.mainFeatures.displaySize}</p>
                     <p class="card-text"> <span class="fw-bold">Memory: </span> ${info.mainFeatures.memory}</p>
@@ -122,3 +164,8 @@ const displayPhoneFullDetails = (info) => {
 
     phoneFullDetailsCard.appendChild(div)
 }
+
+
+/* Display Phone Full Details Card End */
+
+
